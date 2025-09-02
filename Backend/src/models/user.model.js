@@ -17,10 +17,11 @@ const userSchema=mongoose.Schema({
         }
     },
     password:{
-        type:String
+        type:String,
+        required:true
     }
 
-},{timestapms:true})
+},{timestamps:true})
 
 const userModel=mongoose.model("user",userSchema)
 
