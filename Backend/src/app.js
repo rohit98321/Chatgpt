@@ -2,6 +2,7 @@ const express =require("express");
 const app=express();
 const userRouter =require("./routes/user.route")
 const chatRouter =require("./routes/chat.route")
+const messageRouter=require("./routes/message.route")
 const cookieParser=require("cookie-parser")
 const cors =require("cors")
 
@@ -21,6 +22,9 @@ app.use(cors({
 
  //chat
  app.use("/chat",chatRouter)
+
+ //messages
+ app.use("/message",messageRouter)
 
 
 

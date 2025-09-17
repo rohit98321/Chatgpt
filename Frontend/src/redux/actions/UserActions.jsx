@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const asyncUserRegister = (user) => async (dispatch, getState) => {
   try {
@@ -10,6 +11,7 @@ export const asyncUserRegister = (user) => async (dispatch, getState) => {
     );
 
     console.log(data);
+    toast.success(data.message)
   } catch (error) {
     console.log(error.response?.data?.message || error.message);
   }
@@ -22,6 +24,7 @@ export const asyncUserLogin =(user) => async (dispatch,getState)=>{
         
         const {data}=await axios.post("http://localhost:3000/user/login",user,{withCredentials:true})
         console.log(data);
+        toast.success(data.message)
 
     } catch (error) {
         console.log(error.response?.data?.message || error.message);

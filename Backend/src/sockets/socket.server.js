@@ -7,7 +7,13 @@ const messageModel = require("../models/message.model");
 const { createMemory, queryMemory } = require("../service/vector.service");
 
 const initSocketServer = (httpServer) => {
-  const io = new Server(httpServer, {});
+  const io = new Server(httpServer, {
+    cors:{
+      origin:"http://localhost:5173",
+      allowedHeaders:["Content-Type","Authorization"],
+      credentials:true
+    }
+  });
 
   //socket.io middleware where we get token from haeaders and set user in socket.user
   io.use(async (socket, next) => {
@@ -29,6 +35,7 @@ const initSocketServer = (httpServer) => {
   });
 
   io.on("connection", (socket) => {
+    console.log("user connected");
     socket.on("user-message", async (messagePayload) => {
       console.log("messagepayload content", messagePayload);
 
